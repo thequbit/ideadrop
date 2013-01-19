@@ -25,10 +25,15 @@ create table permissions(
 
 create table profiles(
 	profileid int not null auto_increment primary key,
-	profileimageid int not null,
-	userdescription text not null,
-	creationdate date not null,
-	lastlogin datetime not null
+	profileimageid int,
+	userdescription text,
+	creationdate date,
+	lastlogin datetime
+);
+
+create table images(
+	imageid int not null auto_increment primary key,
+	filename text not null
 );
 
 create table chops(
