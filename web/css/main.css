@@ -1,0 +1,101 @@
+
+/*
+ *
+ * Main CSS file for Idea Drop site
+ *
+ */
+
+
+/* reset the browser */
+*
+{
+	margin:0;
+	padding:0;
+}
+
+/* set background image */
+body
+{
+	background-image:url('../media/honey_im_subtle.png');
+	background-repeat:repeat-y repeat-x;
+}
+
+div.top
+{
+	margin: auto;
+	font: 12px sans-serif;
+}
+
+div.sitewrapper
+{
+	margin: auto;
+	width: 900px;
+	/*background-color: white;*/
+}
+
+div.content
+{
+	margin-top: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+div.title
+{
+	background-color: GhostWhite;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 900px;
+	border-radius:3px;
+	font: 16px sans-serif;
+	text-align:center;
+}
+
+div.sidebar
+{
+	float: left;
+	background-color: GhostWhite;
+	width: 175px;
+	height: 500px;
+	border-radius:3px;
+}
+
+div.sidebarheader
+{
+	margin-top: 20px;
+}
+
+div.navlinks
+{
+	margin-top: 25px;
+}
+
+div.navlink
+{
+	margin-left: 12px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+div.meat
+{
+	float: right;
+	/*position:relative;
+	display: inline-block;*/
+	background-color: GhostWhite;
+	width: 715px;
+	height: 500px;
+	border-radius:3px;
+}
+
+div.footerwrapper
+{
+	margin: auto;
+}
+
+div.footer
+{
+	/*margin-top: 575px;*/
+	font: 10px sans-serif;
+	text-align:center;
+}
