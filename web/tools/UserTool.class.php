@@ -17,8 +17,8 @@
 				$db->Connect();
 				
 				// get the displayname of the userid
-				$result = $query = 'SELECT displayname FROM users WHERE $userid=' . $userid;
-				$db->query($query);
+				$query = 'SELECT displayname FROM users WHERE userid="' . $userid . '"';
+				$result = $db->query($query);
 				
 				// get the first responce from the DB
 				$r = mysql_fetch_assoc($result);
@@ -47,8 +47,8 @@
 				$db->Connect();
 				
 				// get the username of the userid
-				$result = $query = 'SELECT username FROM users WHERE $userid=' . $userid;
-				$db->query($query);
+				$query = 'SELECT username FROM users WHERE userid=' . $userid;
+				$result = $db->query($query);
 				
 				// get the first responce from the DB
 				$r = mysql_fetch_assoc($result);
@@ -86,8 +86,8 @@
 				$db->Connect();
 				
 				// get the userid of the username
-				$result = $query = 'SELECT userid FROM users WHERE $username="' . $username . '"';
-				$db->query($query);
+				$query = 'SELECT userid FROM users WHERE username="' . $username . '"';
+				$result = $db->query($query);
 				
 				// test to see if user exists
 				if( mysql_num_rows($result) > 0)

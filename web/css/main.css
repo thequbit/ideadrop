@@ -88,6 +88,55 @@ div.meat
 	border-radius:3px;
 }
 
+/* page specifics */
+
+
+div.index
+{
+	margin-top: 25px;
+	text-align:center;
+}
+
+div.keywordsearch
+{
+	float: left;
+	margin-left: 25px;
+}
+
+div.chopssearch
+{
+	float: right;
+	margin-right: 25px;
+}
+
+div.searcharea
+{
+	height: 25px;
+}
+
+div.searchresults
+{
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	height: 400px;
+}
+
+div.searchresult
+{
+	float: left;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border:1px solid White;
+	box-shadow: 2px 2px 2px #888888;
+	text-align:left;
+}
+
+/* end page specifics */
+
+
 div.footerwrapper
 {
 	margin: auto;

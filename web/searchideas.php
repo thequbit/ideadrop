@@ -1,9 +1,3 @@
-<?php
-
-	
-
-?>
-
 <html>
 <head>
 	<title>IdeaDrop - Share Great Ideas</title>
@@ -12,6 +6,9 @@
 	<meta name="keywords" content="Monroe,Minutes,MonroeMinutes,Rochester,Meetings">
 
 	<link href="css/main.css" rel="stylesheet" type="text/css">
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/search.js"></script>
 	
 </head>
 <body>
@@ -78,9 +75,32 @@
 				
 					<div class="index">
 				
-						Welcome to Idea Drop.  This is a place for great ideas to be shared, and great minds to contribute to them.<br><br>
+						<div id="search" class="search">
+
+							<div id="searcharea" class="searcharea">
+
+								<div id="keywordsearch" class="keywordsearch">
+									Keyword Search: 
+										<input type="text" id="keywordsearchstring" name="searchstring" size="20"> 
+										<button id="searchbutton" onclick="performKeywordSearch()">Search</button>
+								</div>
+
+								<div id="chopssearch" class="chopssearch">
+									Chops Search: 
+										<input type="text" id="chopssearchstring" name="searchstring" size="20"> 
+										<button id="searchbutton" onclick="performChopsSearch()">Search</button>
+								</div>
+								
+							</div>
 						
-						Use the links on the left to create a login, share an idea, or find an idea to contribute to.<br>
+						</div>
+						
+						<div id="searchresults" class="searchresults">
+						
+							
+						
+						</div>
+					
 					</div>
 				
 				</div>

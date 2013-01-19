@@ -4,7 +4,7 @@
 	require_once("UserTool.class.php");
 	require_once("Idea.class.php");
 	
-	class Ideas
+	class IdeaTool
 	{
 	
 		function AddIdea($username, $name, $description)
@@ -26,9 +26,12 @@
 				//
 				
 				// create the idea in the database
-				$result = $query = 'INSERT INTO ideas(creationdatetime,owerid,name,description) VALUES("' . date( 'Y-m-d H:i:s' ) . '",' . $userid . ',"' . $name . '","' . $description . '")';
-				$db->query($query);
+				$query = 'INSERT INTO ideas(creationdatetime,owerid,name,description) VALUES("' . date( 'Y-m-d H:i:s' ) . '",' . $userid . ',"' . $name . '","' . $description . '")';
+				$result = $db->query($query);
 				
+				// success!
+				$success = True;
+	
 			}
 			catch (Exception $e)
 			{
@@ -52,6 +55,7 @@
 				
 				// add the keyword to the list of chops the idea needs
 				$query = 'INSERT INTO ideakeywords(keyword, ideaid) VALUES(' . $keyword . ', ' . $ideaid . ')';
+				$db->query($query);
 				
 				// success!
 				$success = True;
@@ -79,6 +83,7 @@
 				
 				// remove the keyword from the list of keywords for the idea
 				$query = 'DELETE FROM ideakeywords WHERE ideaid=' . $ideaid . ' AND keyword="' . $keyword . '"';
+				$db->query($query);
 				
 				// success!
 				$success = True;
@@ -168,16 +173,18 @@
 			$ideas = array();
 		
 			// try and add the user to the database
-			try
-			{
+			//try
+			//{
+			
+				//echo "chopsid: " . $chopsid . "<br>";
 			
 				// create an instance of our DB tool, and connect to the database
 				$db = new DatabaseTool();
 				$db->Connect();
 			
 				// get all of the ideaid's that have that chops associated with them
-				$result = $query = 'SELECT ideaid FROM ideachops WHERE chopsid="' . $chopsid . '"';
-				$db->query($query);
+				$query = 'SELECT ideaid FROM ideachops WHERE chopsid="' . $chopsid . '"';
+				$result = $db->query($query);
 				
 				// get all of the ideaid's that have that keyword
 				while($r = mysql_fetch_assoc($result))
@@ -186,9 +193,11 @@
 					// get the id of the idea that was returned with having that keyword
 					$ideaid = $r['ideaid'];
 				
+					//echo $ideaid;
+				
 					// get all of the ideaid's that have that keyword associated with them
-					$result = $query = 'SELECT creationdatetime,ownerid,name,description FROM ideas WHERE ideaid="' . $ideaid . '"';
-					$db->query($query);
+					$query = 'SELECT creationdatetime,ownerid,name,description FROM ideas WHERE ideaid="' . $ideaid . '"';
+					$result = $db->query($query);
 				
 					// get the idea from the row
 					$r = mysql_fetch_assoc($result);
@@ -202,19 +211,22 @@
 					
 					// populate the username and display name of the owner from the database
 					$user = new UserTool();
-					$idea->owneruname = $user->GetDisplayNameByUserID($idea->ownerid);
+					
+					//echo "ownerid: " . $idea->ownerid . "<br>";
+					
+					$idea->ownerdisplayname = $user->GetDisplayNameByUserID($idea->ownerid);
 					$idea->ownerusername = $user->GetUsernameByUserID($idea->ownerid);
 					
 					// add the idea object to our array of ideas
 					$ideas[] = $idea;
 				}
 
-			}
-			catch (Exception $e)
-			{
+			//}
+			//catch (Exception $e)
+			//{
 				// reset our array to a count of 0
-				$ideas = array();
-			}
+			//	$ideas = array();
+			//}
 			
 			// return our array of ideas
 			return $ideas;
@@ -234,8 +246,8 @@
 				$db->Connect();
 			
 				// get all of the ideaid's that have that keyword associated with them
-				$result = $query = 'SELECT ideaid FROM ideakeywords WHERE keyword="' . $keyword . '"';
-				$db->query($query);
+				$query = 'SELECT ideaid FROM ideakeywords WHERE keyword="' . $keyword . '"';
+				$result = $db->query($query);
 				
 				// get all of the ideaid's that have that keyword
 				while($r = mysql_fetch_assoc($result))
