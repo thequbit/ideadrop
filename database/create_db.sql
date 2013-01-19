@@ -9,6 +9,7 @@ use ideadrop;
 create table users(
 	userid int not null auto_increment primary key,
 	username varchar(255) not null,
+	displayname varchar(255) not null,
 	passwordhash varchar(255) not null,
 	permissionid int not null,
 	validationcode varchar(255) not null,
@@ -68,6 +69,12 @@ create table ideachops(
 	chopsid int not null
 );
 
+create table ideakeywords(
+	ideakeywordid int not null auto_increment primary key,
+	keyword int not null,
+	ideaid int not null
+);
+
 create table workrequests(
 	workrequestid int not null auto_increment primary key,
 	ideaid int not null,
@@ -76,4 +83,11 @@ create table workrequests(
 	creationdatetime datetime not null,
 	closeddatetime datetime not null,
 	accepted bool not null 
+);
+
+create table ideaupdate(
+	ideaupdateid int not null auto_increment primary key,
+	title int not null,
+	description text not null,
+	updatedatetime datetime not null
 );

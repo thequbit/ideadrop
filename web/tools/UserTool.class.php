@@ -2,8 +2,68 @@
 
 	require_once("DatabaseTool.class.php");
 	
-	class Users
+	class UserTool
 	{
+	
+		function GetDisplayNameByUserID($userid)
+		{
+			// we will be the display name we return from the userid
+			$displayname = "";
+		
+			try
+			{
+				// create an instance of our DB tool, and connect to the database
+				$db = new DatabaseTool();
+				$db->Connect();
+				
+				// get the displayname of the userid
+				$result = $query = 'SELECT displayname FROM users WHERE $userid=' . $userid;
+				$db->query($query);
+				
+				// get the first responce from the DB
+				$r = mysql_fetch_assoc($result);
+			
+				// pull the displayname from the returned data
+				$displayname = $r['displayname'];
+			}
+			catch (Exception $e)
+			{
+				$displayname = "";
+			}
+			
+			// return our success
+			return $displayname;
+		}
+	
+		function GetUsernameByUserID($userid)
+		{
+			// we will be the username we return from the userid
+			$username = "";
+		
+			try
+			{
+				// create an instance of our DB tool, and connect to the database
+				$db = new DatabaseTool();
+				$db->Connect();
+				
+				// get the username of the userid
+				$result = $query = 'SELECT username FROM users WHERE $userid=' . $userid;
+				$db->query($query);
+				
+				// get the first responce from the DB
+				$r = mysql_fetch_assoc($result);
+			
+				// pull the displayname from the returned data
+				$username = $r['username'];
+			}
+			catch (Exception $e)
+			{
+				$username = "";
+			}
+			
+			// return our success
+			return $username;
+		}
 	
 		///
 		/// GetUserIDByUserName
@@ -19,15 +79,14 @@
 			// we will represent our success in adding the user
 			$userid = -1;
 		
-			// try and add the user to the database
 			try
 			{
 				// create an instance of our DB tool, and connect to the database
 				$db = new DatabaseTool();
 				$db->Connect();
 				
-				// get the userid of the validationcode from the database
-				$result = $query = 'SELECT userid FROM users WHERE validationcode="' . $validationcode . '"';
+				// get the userid of the username
+				$result = $query = 'SELECT userid FROM users WHERE $username="' . $username . '"';
 				$db->query($query);
 				
 				// test to see if user exists
@@ -70,7 +129,6 @@
 			// we will represent our success in adding the user
 			$success = False;
 		
-			// try and add the user to the database
 			try
 			{
 		
@@ -187,8 +245,7 @@
 		{
 			// this is the value we will return to tell the calling function if we were successful
 			$success = False;
-		
-			// see if the credentials are correct
+	
 			try
 			{
 		
@@ -206,7 +263,7 @@
 					$db = new DatabaseTool();
 					$db->Connect();
 					
-					// get the userid of the validationcode from the database
+					// update the users password hash
 					$query = 'UPDATE users SET passwordhash="' . $newpasswordhash . '" WHERE username="' . $username . '"';
 					$result = $db->query($query);
 					
@@ -246,7 +303,6 @@
 			// this is the value we will return to tell the calling function if we were successful
 			$success = False;
 		
-			// see if the credentials are correct
 			try
 			{
 		
@@ -257,7 +313,7 @@
 				$db = new DatabaseTool();
 				$db->Connect();
 				
-				// get the userid of the validationcode from the database
+				// get the passwordhash for the username
 				$query = 'SELECT passwordhash FROM users WHERE username="' . $username . '"';
 				$result = $db->query($query);
 				
